@@ -12,35 +12,22 @@
 
 <script type ="text/babel">
   const root = document.querySelector("#root")
-  const Title = () => (
-    <h3 
-      id="title" onMouseEnter={() => console.log("mouse enter ")}>
-      Hello I'm a title
-    </h3>
-  );
-  // 위와 아래 주석 코드는 동일한내용
-  // const h3 = React.createElement("h3",
-  //   {
-  //     id : "title",
-  //     onMouseEnter: () => console.log("mouse enter "),
-  //   },
-  //   "Hello I'm a title");
-const Btn = () => (
-  <button 
-    style ={{backgroundColor: "tomato",}}
-    onClick={() => console.log("im clicked")}>
-    Click me
-  </button>
-);
-  // const btn = React.createElement("button",
-  //   {
-  //     onClick: () => console.log("im clicked"),
-  //   },
-  //   "Click me!");
-  const Container = () => (<div>
-    <Title />
-    <Btn />
-  </div>);
-  ReactDOM.render(<Container />, root);
+  let counter = 0;
+  function countUp() {
+    counter = counter + 1;
+    render()
+  }
+
+  function render() {
+    ReactDOM.render(<Container />, root);
+  }
+  
+  const Container = () => (
+  <div>
+    <h3>Total click : {counter}</h3>
+    <button onClick={countUp}>click me!</button>
+  </div>
+  ); 
+  render();
 </script>
 </html>
