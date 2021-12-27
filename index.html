@@ -14,35 +14,33 @@
   const root = document.querySelector("#root")
   
   function App() {
-    const [minutes, setMinutes] =React.useState(0);
+    const [minute, setMinutes] = React.useState();
     const onChange = (event) =>{
       setMinutes(event.target.value);
     }
-    const reset = () =>{
+    const reset = () => {
       setMinutes(0);
     }
-    
     return (
       <div>
-        <h1>Super Converter: {}</h1>
+        <h1>Super converter</h1>
         <div>
-          <label htmlFor= "minutes">Minutes</label>
-          <input
-            value ={minutes}
-            id="minutes" 
-            placehorder ="Minutes" 
-            type ="number"
-            onChange ={onChange}
+          <lavel htmlFor="minutes">Minutes</lavel>
+          <input 
+            value ={minute} 
+            id ="minutes" 
+            placeHorder="Minutes" 
+            type="number"
+            onChange = {onChange}
           />
         </div>
         <div>
-          <label htmlFor= "hours">Hours</label>
-          <input
-            value ={Math.round(minutes / 60)} 
-            id="hours" 
-            placehorder ="Hours" 
-            type ="number" 
-          />
+          <lavel htmlFor="hours">Hours</lavel>
+          <input 
+            value ={Math.round(minute /60)} 
+            id ="hours" 
+            placeHorder="Hours" 
+            type="number"/>
         </div>
         <button onClick ={reset}>Reset!</button>
       </div>
