@@ -14,17 +14,18 @@
   const root = document.querySelector("#root")
   
   function App() {
-    const [minute, setMinutes] = React.useState();
-    const [flipped, setFlipped] = React.useState(false);
+    const [amount, setAmount] = React.useState(0);
+    const [inverted, setInverted] = React.useState(false);
 
     const onChange = (event) =>{
-      setMinutes(event.target.value);
+      setAmount(event.target.value);
     }
     const reset = () => {
-      setMinutes(0);
+      setAmount(0);
     }
     const onFlip = () => {
-      setFlipped((current) => !current);
+      reset()
+      setInverted((current) => !current);
     }
     return ( 
       <div>
@@ -32,26 +33,27 @@
         <div>
           <lavel htmlFor="minutes">Minutes</lavel>
           <input 
-            value ={minute} 
+            value ={inverted ?amount*60 : amount} 
             id ="minutes" 
             placeHorder="Minutes" 
             type="number"
             onChange = {onChange}
-            disabled ={flipped}
+            disabled ={inverted}
           />
         </div>
         <div>
           <lavel htmlFor="hours">Hours</lavel>
           <input 
-            value ={Math.round(minute /60)} 
+            value ={inverted ? amount : Math.round(amount /60)} 
             id ="hours" 
             placeHorder="Hours" 
             type="number"
-            disabled ={!flipped}
+            onChange = {onChange}
+            disabled ={!inverted}
           />            
         </div>
         <button onClick ={reset}>Reset!</button>
-        <button onClick ={onFlip}>Flipped</button>
+        <button onClick ={onFlip}>{inverted ? 'turn back': 'Invert'}</button>
       </div>
     ); 
   }
